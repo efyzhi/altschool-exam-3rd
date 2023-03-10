@@ -20,9 +20,9 @@ const routes = [
     //   {
     //     path: ':id/reviews',
     //     component: ProductReviewsPage
-      }
+      // }
     // ]
-  // }
+   }
 ]
 
 const router = createRouter({
