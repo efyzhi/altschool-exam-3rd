@@ -6,24 +6,25 @@ import vueProduct from '@/views/vueProduct.vue'
 
 
 const routes = [
-  { path: '/', component: homeView },
-  { path: '/login', component: loginForm },
-  { path: '/signup', component: signupForm }
-  {
-    path: '/products',
-    component: vueProduct,
-    // children: [
-    //   {
-    //     path: ':id',
-    //     component: ProductDetailsPage
-    //   },
-    //   {
-    //     path: ':id/reviews',
-    //     component: ProductReviewsPage
-      // }
-    // ]
+  { 
+    path: '/', 
+    component: homeView 
+  },
+  { 
+    path: '/login', 
+    component: loginForm 
+},
+  { 
+    path: '/signup', 
+    component: signupForm,
+    children: [
+      {
+        path: '/products',
+        component: vueProduct
+      }
+    ]
    }
-]
+];
 
 const router = createRouter({
   history: createWebHistory(),

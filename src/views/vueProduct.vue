@@ -4,25 +4,30 @@
       <h1>Product Page</h1>
       <ul>
         <li v-for="product in products" :key="product.id">
-          <router-link :to="{ path: `/products/${product.id}` }">{{ product.name }}</router-link>
-          <router-link :to="{ path: `/products/${product.id}/reviews` }">Reviews</router-link>
+          <div> {{ product.id }} {{ product.title }} </div>
+          <h3> {{ product.brand }}</h3>
+          <p> {{ product.description }}</p>
         </li>
-      </ul>
+      </ul> 
+      
       <router-view></router-view>
     </div>
   </template>
   
   <script>
+// import { response } from 'express';
+  import axios from 'axios'
   export default {
-    name: 'ProductPage',
+    name: 'vueProduct',
     data() {
       return {
-        products: [
-          { id: 1, name: 'Product 1' },
-          { id: 2, name: 'Product 2' },
-          { id: 3, name: 'Product 3' }
-        ]
+        products: []
       }
+    },
+    mounted () {
+      axios
+      .get('https://dummyjson.com/products')
+      .then (response => (this.products = response.data.products))
     }
   }
   </script>

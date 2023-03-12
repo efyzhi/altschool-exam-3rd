@@ -1,18 +1,14 @@
 <template>
   <div>
-    <nav>
-      <ul>
-        <li><router-link to="/">Home</router-link></li>
-        <li><router-link to="/login">Login</router-link></li>
-        <li><router-link to="/signup">Signup</router-link></li>
-      </ul>
-    </nav>
+    <navBar />
     <router-view></router-view>
   </div>
 </template>
 
-<script>
-export default {
-  name: 'App'
-}
+<script setup>
+import navBar from './components/navBar.vue'
+// export default {
+//   name: 'App',
+//   component: navBar
+// }
 </script>

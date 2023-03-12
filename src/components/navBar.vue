@@ -1,14 +1,20 @@
 <template>
     <div class="nav-container">
         <nav>
-            <!-- <RouterLink to="{path: '/'}">login</RouterLink> -->
-            <!-- <router-link to="{path: '/'}">login</router-link> -->
-            <!-- <router-link to="{path: '/signup'}">Sign Up</router-link> -->
-        </nav>
+      <ul>
+        <li><router-link to="/">Home</router-link></li>
+        <li><router-link to="/login">Login</router-link></li>
+        <li><router-link to="/signup">Signup</router-link></li>
+        <li><router-link to="/signup/products">Products</router-link></li>
+      </ul>
+    </nav>
     </div>
     
 </template>
 
-<script setup>
-    // import { RouterLink } from 'vue-router'
+<script>
+    export default {
+        name: 'navBar'
+    }
+
 </script>
