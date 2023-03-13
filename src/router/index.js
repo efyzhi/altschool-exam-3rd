@@ -11,12 +11,12 @@ const routes = [
     component: homeView 
   },
   { 
-    path: '/login', 
-    component: loginForm 
+    path: '/signup', 
+    component: signupForm 
 },
   { 
-    path: '/signup', 
-    component: signupForm,
+    path: '/login', 
+    component: loginForm,
     children: [
       {
         path: '/products',

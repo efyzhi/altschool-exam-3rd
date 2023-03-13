@@ -2,30 +2,39 @@
 <template>
     <div>
       <h1>Login Page</h1>
-      <form>
+      <form @submit.prevent="handleLogin">
         <label>Email:</label>
         <input type="email" v-model="email">
         <label>Password:</label>
         <input type="password" v-model="password">
-        <button @click.prevent="login">Login</button>
+        <button>Login</button>
       </form>
     </div>
   </template>
   
   <script>
+  import axios from 'axios'
   export default {
     name: 'LoginPage',
-    data() {
-      return {
-        email: '',
-        password: ''
-      }
-    },
-    methods: {
-      login() {
-        // TODO: Implement login logic
-      }
+  data: () => ({
+    username: '',
+    password: '',
+    error: false
+  }),
+  methods: {
+    login() {
+      this.$store.dispatch("LOGIN", {
+        username: this.username,
+        password: this.password
+      })
+      .then(success => {
+        this.$router.push("/")
+      })
+      .catch(error => {
+        this.error = true;
+      })
     }
   }
+};
   </script>
   

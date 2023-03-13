@@ -1,54 +1,58 @@
-<script setup>
-import vue from 'vue'
-import vuex from 'vuex'
-
-
-Vue.use(Vuex);
-
+import axios from "axios";
 
 export default {
-    state = {
-        isLoggedIn: false,
-        user: null
+  state: {},
+  getters: {},
+  mutations: {},
+  actions: {
+    LOGIN: ({ commit }, payload) => {
+      return new Promise((resolve, reject) => {
+        axios
+          .post(`login_check`, payload)
+          .then(({ data, status }) => {
+            if (status === 200) {
+              resolve(true);
+            }
+          })
+          .catch(error => {
+            reject(error);
+          });
+      });
     },
-
-     mutations = {
-        LOGIN(state, user) {
-            state.isLoggedIn = true;
-            state.user = user;
-            localStorage.setItem("user", JSON.stringify(user));
-            localStorage.setItem("isLoggedIn", "true");
-        },
-        LOGOUT(state) {
-            state.isLoggedIn = false;
-            state.user = null;
-            localStorage.removeItem("user");
-            localStorage.setItem("isLoggedIn", "false");
-        }
+    REGISTER: ({ commit }, { email, password }) => {
+      return new Promise((resolve, reject) => {
+        axios
+          .post(`register`, {
+            username,
+            email,
+            password
+          })
+          .then(({ data, status }) => {
+            if (status === 201) {
+              resolve(true);
+            }
+          })
+          .catch(error => {
+            reject(error);
+          });
+      });
     },
-
-    actions = {
-        login({ commit }, user) {
-            commit ('SET_LOGGED_IN', true);
-            commit('SET_USER', user);
-
-            localStorage.setItem('user', JSON.stringify(user));
-            localStorage.setItem('isLoggedIn', 'true');
-        },
-        logout({ commit }) {
-            commit ('SET_LOGGED_IN', false);
-            commit('SET_USER', null);
-
-            localStorage.removeItem('user');
-            localStorage.setItem('isLoggedIn', 'false');
-        }
-    },
-
+    REFRESH_TOKEN: () => {
+      return new Promise((resolve, reject) => {
+        axios
+          .post(`token/refresh`)
+          .then(response => {
+            resolve(response);
+          })
+          .catch(error => {
+            reject(error);
+          });
+      });
+    }
+  }
 };
+
 const store = new Vuex.Store({
     state,
     mutations,
-    actions
-});
-
-</script>
+    actions })
