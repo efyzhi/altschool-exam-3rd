@@ -17,13 +17,17 @@ const routes = [
   { 
     path: '/login', 
     component: loginForm,
-    children: [
-      {
-        path: '/products',
-        component: vueProduct
-      }
-    ]
-   }
+    // children: [
+    //   {
+    //     path: '/products',
+    //     component: vueProduct
+    //   }
+    // ]
+   },
+   { 
+    path: '/products',
+    component: vueProduct
+  }
 ];
 
 const router = createRouter({

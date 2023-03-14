@@ -1,58 +1,47 @@
-import axios from "axios";
+import { createStore } from 'vuex'
+import { auth } from '../firebase/config'
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword
+} from 'firebase/auth'
 
-export default {
-  state: {},
-  getters: {},
-  mutations: {},
+const store = createStore ({
+
+  state: {
+    user: null
+  },
+
+  mutations: {
+    setUser (state, payload) {
+      state.user = payload
+      console.log('user state changed:', state.user)
+    }
+  },
+  
   actions: {
-    LOGIN: ({ commit }, payload) => {
-      return new Promise((resolve, reject) => {
-        axios
-          .post(`login_check`, payload)
-          .then(({ data, status }) => {
-            if (status === 200) {
-              resolve(true);
-            }
-          })
-          .catch(error => {
-            reject(error);
-          });
-      });
+    async signup(context, { email, password, repeat_password }) {
+      console.log('signup action')
+
+      const res = await createUserWithEmailAndPassword(auth, email, password, repeat_password)
+      console.log(res)
+      if (res) {
+        context.commit('setUser', res.user)
+      }else {
+        throw new Error('could not complete login')
+      }
+
+
     },
-    REGISTER: ({ commit }, { email, password }) => {
-      return new Promise((resolve, reject) => {
-        axios
-          .post(`register`, {
-            username,
-            email,
-            password
-          })
-          .then(({ data, status }) => {
-            if (status === 201) {
-              resolve(true);
-            }
-          })
-          .catch(error => {
-            reject(error);
-          });
-      });
-    },
-    REFRESH_TOKEN: () => {
-      return new Promise((resolve, reject) => {
-        axios
-          .post(`token/refresh`)
-          .then(response => {
-            resolve(response);
-          })
-          .catch(error => {
-            reject(error);
-          });
-      });
+    async login(context, {email, password}) {
+      const res = await signInWithEmailAndPassword(auth, email, password)
+      console.log(res)
+      if (res) {
+        context.commit('setUser', res.user)
+      }else {
+        throw new Error('could not complete signup')
+      }
     }
   }
-};
+})
 
-const store = new Vuex.Store({
-    state,
-    mutations,
-    actions })
+export default store

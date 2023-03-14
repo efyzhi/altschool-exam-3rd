@@ -1,4 +1,3 @@
-<!-- LoginPage.vue -->
 <template>
     <div>
       <h1>Login Page</h1>
@@ -13,26 +12,24 @@
   </template>
   
   <script>
-  import axios from 'axios'
   export default {
     name: 'LoginPage',
   data: () => ({
     username: '',
     password: '',
-    error: false
   }),
   methods: {
-    login() {
-      this.$store.dispatch("LOGIN", {
-        username: this.username,
-        password: this.password
+    async handlelogin() {
+       try {
+        await this.$store.dispatch('login', { 
+        email: this.email,
+        password: this.password,
+        repeat_password: this.repeat_password
       })
-      .then(success => {
-        this.$router.push("/")
-      })
-      .catch(error => {
-        this.error = true;
-      })
+      this.router.push('/')
+       } catch (err) {
+        // this.error = this.error.message
+       }
     }
   }
 };

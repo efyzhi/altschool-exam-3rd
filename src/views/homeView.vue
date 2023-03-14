@@ -8,6 +8,8 @@
   <script>
   export default {
     name: 'HomePage'
+
+    // console.log(this.$store.state.user)
   }
   </script>
   
