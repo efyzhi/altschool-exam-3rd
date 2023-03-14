@@ -52,9 +52,9 @@
         password: this.password,
         repeat_password: this.repeat_password
       })
-      this.router.push('/')
-       } catch (err) {
-        // this.error = this.error.message
+      this.$router.push('/')
+      } catch (err) {
+        this.$error = this.error.message
        }
     }
   }

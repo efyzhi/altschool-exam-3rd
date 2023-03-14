@@ -19,16 +19,15 @@
     password: '',
   }),
   methods: {
-    async handlelogin() {
+    async handleLogin() {
        try {
         await this.$store.dispatch('login', { 
         email: this.email,
         password: this.password,
-        repeat_password: this.repeat_password
-      })
-      this.router.push('/')
+    })
+      this.$router.push('/products')  
        } catch (err) {
-        // this.error = this.error.message
+        this.$error = this.error.message
        }
     }
   }

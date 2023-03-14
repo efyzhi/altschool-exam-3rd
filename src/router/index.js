@@ -17,12 +17,6 @@ const routes = [
   { 
     path: '/login', 
     component: loginForm,
-    // children: [
-    //   {
-    //     path: '/products',
-    //     component: vueProduct
-    //   }
-    // ]
    },
    { 
     path: '/products',

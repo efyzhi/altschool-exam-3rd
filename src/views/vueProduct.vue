@@ -1,4 +1,3 @@
-<!-- ProductPage.vue -->
 <template>
     <div>
       <h1>Product Page</h1>
@@ -16,19 +15,23 @@
   
   <script>
 // import { response } from 'express';
-  import axios from 'axios'
-  export default {
-    name: 'vueProduct',
-    data() {
-      return {
-        products: []
-      }
-    },
-    mounted () {
-      axios
-      .get('https://dummyjson.com/products')
-      .then (response => (this.products = response.data.products))
+import axios from 'axios'
+
+export default {
+  name: 'vueProduct',
+  data() {
+    return {
+      products: []
+    }
+  },
+  async mounted() {
+    try {
+      const response = await axios.get('https://dummyjson.com/products')
+      this.products = response.data.products
+    } catch (error) {
+      console.error(error)
     }
   }
+}
   </script>
   
