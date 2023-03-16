@@ -8,10 +8,11 @@
           <li><router-link to="/login">Login</router-link></li>
         <li><router-link to="/signup">Signup</router-link></li>
         </div>
-        <li><router-link to="/products">Products</router-link></li>
+        
 
         <div v-if="user">
           <h3> Logged in as {{ user.email }}</h3>
+          <li><router-link to="/products">Products</router-link></li>
           <button @click="handleLogout">Logout</button>
         </div>
       </ul>

@@ -1,12 +1,13 @@
 <template>
-    <div>
+    <div class="login-form">
       <h1>Login Page</h1>
       <form @submit.prevent="handleLogin">
         <label>Email:</label>
         <input type="email" v-model="email">
         <label>Password:</label>
         <input type="password" v-model="password">
-        <button>Login</button>
+        <button type="submit">Login</button>
+<div> You don't have an account? <span @click="goToSignUp">Sign up</span></div>
       </form>
     </div>
   </template>
@@ -29,8 +30,29 @@
        } catch (err) {
         this.$error = this.error.message
        }
+    },
+    goToSignUp(){
+      this.$router.push('/signup')
     }
   }
 };
   </script>
   
+<style>
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    width: 75%;
+    padding: 20px;
+  }
+
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+</style>

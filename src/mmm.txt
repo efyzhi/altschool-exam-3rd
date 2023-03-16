@@ -179,3 +179,45 @@ export default new Vuex.Store({
     }
   }
 })
+
+
+
+
+<template>
+    <div>
+        <h2> {{ product.title }} </h2>
+        <p> {{ product.description }}  </p>
+    </div>
+</template>
+
+<script>
+    import axios from 'axios'
+
+export default {
+  name: 'productDescription',
+  props: {
+    id: {
+      type: Number,
+      required: true
+    },
+    products: {
+      type: Array,
+      required: true
+    }
+  },
+
+  computed: {
+    product() {
+      return this.products.find(p => p.id === this.id) || {};
+    }
+  },
+  async mounted() {
+    try {
+      axios.defaults.withCredentials = false
+      const response = await axios.get('https://dummyjson.com/products')
+      this.products = response.data.products
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
