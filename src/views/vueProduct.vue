@@ -3,12 +3,14 @@
     <div>
       <ul  class="product">
         <li v-for="product in products" :key="product.id" class="product-box">
-          <router-link :to="{ name: 'product', params: { id: product.id } }">
-            <div class="product-image"> <img :src="product.images[0] && product.images[1]" alt="product-image" /> </div>
-            <div> {{ product.id || '' }} {{ product.title || '' }} </div>
-            <h3> {{ product.brand || '' }}</h3>
-            
-          </router-link>
+          <!-- <router-link :to="{ name: 'product', params: { id: product.id } }"> -->
+            <div > <img :src="product.images[0]" alt="product-image" class="product-image"/> </div>
+            <div class="product-body">
+              <div>  {{ product.title || '' }} </div>
+              <h3> {{ product.brand || '' }}</h3>
+              <p> ${{ product.price }}</p>
+          </div>
+          <!-- </router-link> -->
         </li>
       </ul> 
       
@@ -53,7 +55,7 @@ export default {
   }
 
   .product-image {
-    width: 200px;
-    height: 200px;
+    width: 50px;
+    height: 50px;
   }
   </style>

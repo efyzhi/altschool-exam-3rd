@@ -39,7 +39,7 @@
   </script>
   
 <style>
-  form {
+  .login-form {
     display: flex;
     flex-direction: column;
     justify-content: center;
