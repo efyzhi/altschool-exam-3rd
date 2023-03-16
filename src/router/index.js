@@ -3,7 +3,7 @@ import loginForm from '@/views/loginForm.vue'
 import signupForm from '@/views/signupForm.vue'
 // import homeView from '@/views/homeView'
 import vueProduct from '@/views/vueProduct.vue'
-// import productDescription from '@/views/productDescription.vue'
+import productDescription from '@/views/productDescription.vue'
 
 const routes = [
   // { 
@@ -22,12 +22,11 @@ const routes = [
     path: '/products',
     component: vueProduct
   },
-  // {
-  //   path: '/products/:id',
-  //   name: 'product',
-  //   component: productDescription,
-  //   props: true
-  // },
+  {
+    path: '/products/:id',
+    name: 'product',
+    component: productDescription,
+  }
   
 ];
 
