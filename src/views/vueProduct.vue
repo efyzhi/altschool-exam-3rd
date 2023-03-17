@@ -3,22 +3,18 @@
   <h1>Product Page</h1>
     <div>
       <div>
-        
+        <button class="btn-logout" @click="handleLogout">Logout</button>
       </div>
 
       <ul  class="product" >
         
-        <li v-for="product in paginateProducts" :key="product.id" class="product-box">
-          <!-- <router-link :to="'product' + product.id"> -->
-            <div > <img :src="product.images[0]" alt="product-image" class="product-image"/> </div>
+        <li v-for="product in paginateProducts" :key="product.id" class="product-box" @click="this.$router.push(`/products/${product.id}`)">
+          <div > <img :src="product.images[0]" alt="product-image" class="product-image"/> </div>
             <div class="product-body">
               <h3> {{ product.brand || '' }}</h3>
               <p>  {{ product.title || '' }} </p>
               <p> ${{ product.price }}</p>
           </div>
-          <!-- </router-link> -->
-          
-      <button @click="this.$router.push(`/products/${product.id}`)"> vi </button>
         </li>
       
       </ul> 
@@ -53,7 +49,11 @@ export default {
     },
     moveNext() {
       this.goToDes
-    }
+    },
+    handleLogout() {
+      this.$store.dispatch('logout')
+      this.$router.push('/')
+        }
   },
 
   computed: {

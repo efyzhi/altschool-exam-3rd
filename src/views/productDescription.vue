@@ -22,9 +22,8 @@
 // import { useRoute, RouterLink } from 'vue-router';
 
 export default {
-  name: 'ProductDetail',
+  name: 'productDescription',
   components: {
-    // RouterLink,
     // LoadingCom,
   },
   data() {
