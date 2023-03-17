@@ -1,28 +1,53 @@
 <template>
-  <div>
-    <!-- <img :src="product.images[0]" alt="product"/> -->
-    <h2>{{ product.title }}</h2>
-    <p>{{ product.description }}</p>
-  </div>
-  <p> go back <router-link to="/products">Product</router-link></p>
+  <section v-if="loading">
+    <!-- <LoadingCom /> -->
+  </section>
+  <section v-else class="grid-container">
+    <img :src="product.images[0]" alt="product" />
+    <div class="item2">
+      <h3>{{ product.title }}</h3>
+      <p class="description">{{ product.description }}</p>
+      <p class="rate">{{ product.rating }}⭐</p>
+      <p class="stock">{{ product.stock }} left</p>
+      <p><span>category</span> {{ product.category }}</p>
+      <p class="mgs">
+        Back to <router-Link to="/products">Products</router-Link>
+      </p>
+    </div>
+  </section>
 </template>
 
 <script>
-// import axios from 'axios'
-  export default {
-    name: 'productD',
+// import { ref, onMounted } from 'vue';
+// import { useRoute, RouterLink } from 'vue-router';
+
+export default {
+  name: 'ProductDetail',
+  components: {
+    // RouterLink,
+    // LoadingCom,
+  },
   data() {
     return {
-      products: []
-    }
+      product: {},
+      loading: true,
+    };
   },
-  
-
+  methods: {
+    fetchProduct() {
+      const endpoint = `https://dummyjson.com/products/${this.$route.params.id}`;
+      fetch(endpoint)
+        .then((res) => res.json())
+        .then((json) => (this.product = json))
+        .finally(() => (this.loading = false));
+    },
+  },
   mounted() {
-    const id = this.$route.params.id;
-    fetch(`https://dummyjson.com/products/${id}`)
-      .then(response => response.json())
-      .then(data => this.product = data);
-  }
-  }
+    this.fetchProduct();
+  },
+};
 </script>
+
+<style scoped>
+/* styles */
+</style>
