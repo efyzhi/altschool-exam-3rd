@@ -141,4 +141,8 @@ main {
     position: relative;
   }
 
+  @media screen and (min-width: 480px) {
+
+}
+
 </style>

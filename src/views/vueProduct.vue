@@ -1,26 +1,26 @@
 <template>
   <div class="product-contain">
-  <h1>Product Page</h1>
+  <h1>Products' List</h1>
     <div>
       <div>
         <button class="btn-logout" @click="handleLogout">Logout</button>
       </div>
 
-      <ul  class="product" >
-        
+      <ul  class="product">        
         <li v-for="product in paginateProducts" :key="product.id" class="product-box" @click="this.$router.push(`/products/${product.id}`)">
           <div > <img :src="product.images[0]" alt="product-image" class="product-image"/> </div>
             <div class="product-body">
-              <h3> {{ product.brand || '' }}</h3>
-              <p>  {{ product.title || '' }} </p>
+              <h3> {{ product.brand  }}</h3>
+              <p>  {{ product.title  }} </p>
               <p> ${{ product.price }}</p>
           </div>
         </li>
       
       </ul> 
       <div class="pages"> 
-        <button @click="prevPage" :disabled="currentPage === 1">Prev</button> <span> {{ currentPage }} of {{ TotalPages }}</span>
-        <button @click="nextPage" :disabled="currentPage === TotalPages">Next</button>
+        <button class="btn prev-page" @click="prevPage" :disabled="currentPage === 1">Prev</button> 
+        <span> {{ currentPage }} of {{ TotalPages }}</span>
+        <button class="btn next-page" @click="nextPage" :disabled="currentPage === TotalPages">Next</button>
       </div>
       <!-- <router-view></router-view> -->
     </div>
@@ -97,6 +97,7 @@ goToDes() {
     align-items: center;
     background: #478097;
     height: 100vh;
+    position: inherit;
   }
 
   .product-box {
@@ -105,7 +106,8 @@ goToDes() {
     box-shadow: 5px 7px #4e4949;
     padding: 10px;
     list-style: none;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -134,4 +136,64 @@ goToDes() {
     text-align: center;
     margin-top: 20px;
   }
+
+  .btn {
+    padding: 10px;
+    border-radius: 10px;
+    background: black;
+    color: #478097;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn:hover {
+    background: #fff;
+    color: #000;
+    border: none;
+    transition: all linear 0.5s;
+  }
+
+  span {
+    padding: 5px;
+    color: #fff;
+  }
+
+  .btn-logout {
+    padding: 10px 20px;
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    cursor: pointer;
+    transition: all linear 0.5s;
+  }
+
+  .btn-logout:hover {
+    background: #8a7a7a;
+  }
+
+  @media screen and (min-width: 480px) {
+    .product-contain {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: scroll;
+      height: 100vh;
+    }
+
+    .product-box {
+      display: flex;
+      flex-direction: columns;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .product {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+  }
+}
   </style>
