@@ -4,6 +4,8 @@ import signupForm from '@/views/signupForm.vue'
 // import homeView from '@/views/homeView'
 import vueProduct from '@/views/vueProduct.vue'
 import productDescription from '@/views/productDescription.vue'
+import ErroPage from '@/views/ErroPage.vue'
+
 
 const routes = [
   // { 
@@ -26,6 +28,11 @@ const routes = [
     path: '/products/:id',
     name: 'product',
     component: productDescription,
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'notfound',
+    component: ErroPage
   }
   
 ];
