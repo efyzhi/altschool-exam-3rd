@@ -2,7 +2,7 @@
   <div class="product-contain">
     <h1>Vue Product Page</h1>
     <div v-if="currentUser">
-      <p>Logged in as {{ currentUser.name }}</p>
+      <p>Logged in as {{ currentUser.email }}</p>
       <button @click="handleLogout">Logout</button>
     </div>
     <div v-else>
