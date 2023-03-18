@@ -13,8 +13,8 @@
       <li v-for="product in paginateProducts" :key="product.id" class="product-box">
         <div > <img :src="product.images[0]" alt="product-image" class="product-image"/> </div>
         <div class="product-body" @click="goToDes(product.id)">
-          <h2>{{ product.name }}</h2>
-          <p>{{ product.description }}</p>
+          <h2>{{ product.brand }}</h2>
+          <p>{{ product.title }}</p>
           <p>Price: {{ product.price }}</p>
         </div>
       </li>
