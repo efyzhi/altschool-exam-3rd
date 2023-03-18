@@ -11,7 +11,7 @@
            <img :src="product.images[0]" alt="product-image" class="product-image"/> 
         </div>
         <div class="product-body" @click="goToDes(product.id)">
-          <h2>{{ product.brand }}</h2>
+          <p>{{ product.brand }}</p>
           <p>{{ product.title }}</p>
           <p>Price: ${{ product.price }}</p>
         </div>
@@ -175,6 +175,7 @@ export default {
   color: rgb(13, 1, 1);
   transition: all 0.2s ease-in-out;
   cursor: pointer;
+  width: 150px;
   }
 }
 
