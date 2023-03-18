@@ -1,6 +1,6 @@
 <template>
   <div class="product-contain">
-    <h1>Vue Product Page</h1>
+    <h1> Product Page</h1>
     <div v-if="currentUser">
       <p>Logged in as {{ currentUser.email }}</p>
       <button @click="handleLogout">Logout</button>
@@ -124,9 +124,11 @@ export default {
 }
 
   .product {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 20px;
+    display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 20px;
+
   }
 
   .product-image {
