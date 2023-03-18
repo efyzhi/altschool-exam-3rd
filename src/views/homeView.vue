@@ -1,7 +1,6 @@
 <template>
     <div>
-      <h1>Home Page</h1>
-      <p>Welcome to my app!</p>
+      <router-view></router-view>
     </div>
   </template>
   
