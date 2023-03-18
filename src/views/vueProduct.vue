@@ -100,16 +100,18 @@ export default {
   }
 
   .product-box {
-    border: 2px solid black;
-    border-radius: 10px;
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
-    padding: 10px;
-    list-style: none;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    flex-basis: calc(33.33% - 10px);
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease-in-out;
+
     background: #c9eeff;
     color: rgb(13, 1, 1);
     transition: all 0.2s ease-in-out;
