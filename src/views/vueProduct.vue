@@ -1,6 +1,6 @@
 <template>
   <div class="product-contain">
-    <h1> Product Page</h1>
+    <h1> Product List</h1>
     <div v-if="currentUser">
       <p>Logged in as {{ currentUser.email }}</p>
       <button @click="handleLogout">Logout</button>
