@@ -1,3 +1,6 @@
+import useCurrentUser from '@/composables/currentUser';
+
+
 <template>
   <div class="product-contain">
   <h1>Products' List</h1>
@@ -5,7 +8,9 @@
       <div>
         <button class="btn-logout" @click="handleLogout">Logout</button>
       </div>
-
+      <div>
+        <p> Welcome {{ currentUser }}</p>
+      </div>
       <ul  class="product">        
         <li v-for="product in paginateProducts" :key="product.id" class="product-box" @click="this.$router.push(`/products/${product.id}`)">
           <div > <img :src="product.images[0]" alt="product-image" class="product-image"/> </div>
@@ -171,14 +176,13 @@ goToDes() {
     background: #8a7a7a;
   }
 
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 768px) {
     .product-contain {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      overflow: scroll;
-      height: 100vh;
+      overflow: hidden;
     }
 
     .product-box {
