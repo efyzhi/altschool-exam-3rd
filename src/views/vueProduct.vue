@@ -1,50 +1,49 @@
-import useCurrentUser from '@/composables/currentUser';
-
-
 <template>
   <div class="product-contain">
-  <h1>Products' List</h1>
-    <div>
-      <div>
-        <button class="btn-logout" @click="handleLogout">Logout</button>
-      </div>
-      <div>
-        <p> Welcome {{ currentUser }}</p>
-      </div>
-      <ul  class="product">        
-        <li v-for="product in paginateProducts" :key="product.id" class="product-box" @click="this.$router.push(`/products/${product.id}`)">
-          <div > <img :src="product.images[0]" alt="product-image" class="product-image"/> </div>
-            <div class="product-body">
-              <h3> {{ product.brand  }}</h3>
-              <p>  {{ product.title  }} </p>
-              <p> ${{ product.price }}</p>
-          </div>
-        </li>
-      
-      </ul> 
-      <div class="pages"> 
-        <button class="btn prev-page" @click="prevPage" :disabled="currentPage === 1">Prev</button> 
-        <span> {{ currentPage }} of {{ TotalPages }}</span>
-        <button class="btn next-page" @click="nextPage" :disabled="currentPage === TotalPages">Next</button>
-      </div>
-      <!-- <router-view></router-view> -->
+    <h1>Vue Product Page</h1>
+    <div v-if="currentUser">
+      <p>Logged in as {{ currentUser.name }}</p>
+      <button @click="handleLogout">Logout</button>
+    </div>
+    <div v-else>
+      <p>You are not logged in.</p>
+      <router-link to="/login">Login</router-link>
+    </div>
+    <ul class="product">
+      <li v-for="product in paginateProducts" :key="product.id" class="product-box">
+        <div > <img :src="product.images[0]" alt="product-image" class="product-image"/> </div>
+        <div class="product-body" @click="goToDes(product.id)">
+          <h2>{{ product.name }}</h2>
+          <p>{{ product.description }}</p>
+          <p>Price: {{ product.price }}</p>
+        </div>
+      </li>
+    </ul>
+    <div class="pages">
+      <button  class="btn prev-page" @click="prevPage" :disabled="currentPage === 1">Prev</button>
+      <span>{{ currentPage }} / {{ TotalPages }}</span>
+      <button class="btn next-page" @click="nextPage" :disabled="currentPage === TotalPages">Next</button>
     </div>
   </div>
-  </template>
-  
-  <script>
-import axios from 'axios'
+</template>
+
+<script>
+import axios from 'axios';
+import { useCurrentUser } from '@/composables/currentUser';
 
 export default {
   name: 'vueProduct',
+  setup() {
+    const { currentUser } = useCurrentUser();
+    return { currentUser };
+  },
   data() {
     return {
       currentPage: 1,
       itemsPerPage: 6,
       products: []
-    }
+    };
   },
-
   methods: {
     prevPage() {
       this.currentPage -= 1;
@@ -52,41 +51,36 @@ export default {
     nextPage() {
       this.currentPage += 1;
     },
-    moveNext() {
-      this.goToDes
+    goToDes(productId) {
+      this.$router.push(`/products/${productId}`);
     },
     handleLogout() {
-      this.$store.dispatch('logout')
-      this.$router.push('/')
-        }
+      this.$store.dispatch('logout');
+      this.$router.push('/');
+    }
   },
-
   computed: {
-  paginateProducts() {
-    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    const endIndex = startIndex + this.itemsPerPage;
-    return this.products.slice(startIndex, endIndex);
+    paginateProducts() {
+      const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+      const endIndex = startIndex + this.itemsPerPage;
+      return this.products.slice(startIndex, endIndex);
+    },
+    TotalPages() {
+      return Math.ceil(this.products.length / this.itemsPerPage);
+    }
   },
-  TotalPages() {
-    return Math.ceil( this.products.length / this.itemsPerPage )
-  }
-},
-
-goToDes() {
-    return this.$router.push('/products/${product.id}')
-  },
-
   async mounted() {
     try {
-      axios.defaults.withCredentials = false
-      const response = await axios.get('https://dummyjson.com/products')
-      this.products = response.data.products
+      axios.defaults.withCredentials = false;
+      const response = await axios.get('https://dummyjson.com/products');
+      this.products = response.data.products;
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
   }
-}
-  </script>
+};
+</script>
+
   
   <style>
   * {
