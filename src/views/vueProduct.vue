@@ -102,7 +102,7 @@ goToDes() {
     align-items: center;
     background: #478097;
     height: 100vh;
-    position: inherit;
+    position: relative;
   }
 
   .product-box {

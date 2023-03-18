@@ -1,9 +1,9 @@
 <template>
   <section v-if="loading">
-    <!-- <LoadingCom /> -->
+    
   </section>
   <section v-else class="grid-container">
-    <img :src="product.images[0]" alt="product" />
+    <img :src="product.images[0]" alt="product" class="p-img"/>
     <div class="item2">
       <h3>{{ product.title }}</h3>
       <p class="description">{{ product.description }}</p>
@@ -18,14 +18,10 @@
 </template>
 
 <script>
-// import { ref, onMounted } from 'vue';
-// import { useRoute, RouterLink } from 'vue-router';
 
 export default {
   name: 'productDescription',
-  components: {
-    // LoadingCom,
-  },
+  
   data() {
     return {
       product: {},
@@ -51,6 +47,8 @@ export default {
   .grid-container {
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
     padding: 50px;
     background: #478097;
     height: 100vh;
@@ -68,4 +66,11 @@ export default {
   a:hover {
     color: #fff;
   }
+
+  .p-img {
+    width: 500px;
+    height: 500px;
+  }
+
+  
 </style>
