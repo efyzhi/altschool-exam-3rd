@@ -118,7 +118,7 @@ goToDes() {
     align-items: center;
     background: #c9eeff;
     color: rgb(13, 1, 1);
-    transition: transform .2s;
+    transition: transform 1s;
     cursor: pointer;
   }
 
@@ -182,7 +182,8 @@ goToDes() {
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      overflow: hidden;
+      overflow: scroll;
+      padding: 20px;
     }
 
     .product-box {
@@ -194,10 +195,13 @@ goToDes() {
 
     .product {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
     width: 90%;
     justify-content: center;
     align-items: center;
+    margin-top: 5px;
+    margin-bottom: 50px;
   }
 }
   </style>
