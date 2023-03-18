@@ -102,7 +102,7 @@ export default {
   .product-box {
     border: 2px solid black;
     border-radius: 10px;
-    box-shadow: 5px 7px #4e4949;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
     padding: 10px;
     list-style: none;
     display: grid;
