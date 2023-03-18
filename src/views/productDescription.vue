@@ -9,7 +9,7 @@
       <p class="description">{{ product.description }}</p>
       <p class="rate">{{ product.rating }}⭐</p>
       <p class="stock">{{ product.stock }} left</p>
-      <p><span>category</span> {{ product.category }}</p>
+      <p><span class="u">category</span> {{ product.category }}</p>
       <p class="mgs">
         Back to <router-Link to="/products">Products</router-Link>
       </p>
@@ -48,5 +48,24 @@ export default {
 </script>
 
 <style scoped>
-/* styles */
+  .grid-container {
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+    background: #478097;
+    height: 100vh;
+  }
+
+  .u {
+    color: #000;
+  }
+
+  a {
+    color: #000;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: #fff;
+  }
 </style>
