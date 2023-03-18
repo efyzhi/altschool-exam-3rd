@@ -112,13 +112,14 @@ export default {
     align-items: center;
     background: #c9eeff;
     color: rgb(13, 1, 1);
-    transition: transform 1s;
+    transition: all 0.2s ease-in-out;
     cursor: pointer;
   }
 
   .product-box:hover {
-    transform: scale(1.2);
-  }
+    transform: translateY(-10px);
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+}
 
   .product {
     display: grid;
