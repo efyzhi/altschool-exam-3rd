@@ -171,7 +171,7 @@ goToDes() {
     background: #8a7a7a;
   }
 
-  @media screen and (min-width: 480px) {
+  @media screen and (max-width: 480px) {
     .product-contain {
       display: flex;
       flex-direction: column;

@@ -31,9 +31,6 @@
         }
       },
       computed: {
-        user() {
-          return this.$store.state.user
-        },
         authIsReady() {
           return this.$store.state.authIsReady
         }
